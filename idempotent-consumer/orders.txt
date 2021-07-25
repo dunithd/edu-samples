@@ -1,0 +1,1 @@
+{"eventId":"foo","eventType":"ORDER_CREATED","payload":{"id":12345,"customerId":"12df-dfdf-223","status":"CREATED"}}
