@@ -1,8 +1,8 @@
-# hibernate-orm-mysql Project
+# Idempotent Event Consumer
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This sample uses Quarkus, Hibernate, MySQL, and Apache Kafka to implement a Kafka event consumer that detects and discards duplicate events coming from a Kafka topic.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Underneath, it maintains a MySQL table called 'consumed_messages' to store successfully processed messages. When a new message arrives, the consumer logic checks this table for the existence of the message ID. If yes, the processing is ignored, otherwise, the message will be processed and its ID will be inserted to the consumed_messages table.
 
 ## Running the application in dev mode
 
