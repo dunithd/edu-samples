@@ -1,0 +1,23 @@
+
+bin/pinot-admin.sh  StartKafka -zkAddress=localhost:2123/kafka -port 9876
+
+kafka-topics --bootstrap-server localhost:9876 --list
+
+kafka-topics --create \
+  --bootstrap-server localhost:9876 \
+  --replication-factor 1 \
+  --partitions 1 \
+  --topic steps
+
+bin/pinot-admin.sh AddTable \
+-schemaFile schemas/steps-schema.json \
+-tableConfigFile schemas/steps-table.json \
+-exec
+
+kafka-console-producer \                                                                                                                               127 ↵
+--broker-list localhost:9876 \
+    --topic steps < fitness_events_24h.json
+
+ curl -H "Content-Type: application/json" -X POST \
+   -d '{"sql":"select userName, country, sum(steps) as total from steps group by userName,country order by total desc limit 10"}' \
+   http://localhost:8000/query/sql

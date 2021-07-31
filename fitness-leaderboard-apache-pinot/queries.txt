@@ -1,0 +1,12 @@
+select userName, country, sum(steps) as total
+from steps
+group by userName,country
+order by total desc
+limit 10
+
+select userName, country, sum(steps) as total
+from steps
+where loggedAt > ToEpochSeconds(now()- 86400000)
+group by userName,country
+order by total desc
+
