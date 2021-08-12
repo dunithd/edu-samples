@@ -6,7 +6,7 @@ Clone the repo and spin up the containers with Docker Compose.
 
 ```console
 git clone https://github.com/dunithd/edu-samples.git
-cd mv_with_materialize
+cd edu-samples/mv_with_materialize
 docker-compose up -d kafka zookeeper schema-registry mysql postgres payments-feeder
 ```
 
