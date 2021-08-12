@@ -127,7 +127,7 @@ CREATE VIEW payments_view AS
 The following will return the order history for the customer with ID 100.
 
 ```sql
-SELECT * FROM order_history WHERE customer_id = ‘100’;
+SELECT * FROM order_history WHERE customer_id = '100';
 ```
 
 Hope you enjoyed the sample.
