@@ -1,0 +1,3 @@
+{"payment_id":20500,"order_id":10500,"payment_date":"2021-01-21","payment_method":"CARD","amount":49.99,"status":"SUCCESSFUL"}
+{"payment_id":21500,"order_id":11500,"payment_date":"2021-04-01","payment_method":"CARD","amount":49.99,"status":"SUCCESSFUL"}
+{"payment_id":22500,"order_id":12500,"payment_date":"2021-05-31","payment_method":"CARD","amount":280.00,"status":"SUCCESSFUL"}

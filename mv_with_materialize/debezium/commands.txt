@@ -1,0 +1,35 @@
+
+curl -H 'Content-Type: application/json' debezium:8083/connectors --data '
+{
+  "name": "orders-connector",  
+  "config": {  
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",  
+    "database.hostname": "mysql",  
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "debezium",
+    "database.server.id": "184054",  
+    "database.server.name": "mysql",  
+    "database.include.list": "order_db",  
+    "database.history.kafka.bootstrap.servers": "kafka:9092",  
+    "database.history.kafka.topic": "mysql-history"  
+  }
+}'
+
+curl -H 'Content-Type: application/json' debezium:8083/connectors --data '
+{
+  "name": "shipments-connector",  
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector", 
+    "plugin.name": "pgoutput",
+    "database.hostname": "postgres", 
+    "database.port": "5432", 
+    "database.user": "postgresuser", 
+    "database.password": "postgrespw", 
+    "database.dbname" : "shipment_db", 
+    "database.server.name": "postgres", 
+    "table.include.list": "public.shipments" 
+
+  }
+}'
