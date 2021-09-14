@@ -13,7 +13,7 @@ SELECT
     to_timestamp(((text::jsonb)->'timestamp')::bigint) AS ts
 FROM sensor_data_raw;
 
-CREATE MATERIALIZED VIEW avg_temperature AS
+CREATE MATERIALIZED VIEW anomalies AS
 SELECT sensor_uuid,
        AVG(ambient_temperature) AS avg
 FROM sensor_data
@@ -22,7 +22,7 @@ GROUP BY sensor_uuid
 HAVING AVG(ambient_temperature) > 40;
 
 CREATE SINK alerts
-FROM avg_temperature
+FROM anomalies
 INTO KAFKA BROKER 'kafka:9092' TOPIC 'high-temp-alerts'
     CONSISTENCY TOPIC 'high-temp-alerts-consistency'
     CONSISTENCY FORMAT AVRO USING CONFLUENT SCHEMA REGISTRY 'http://schema-registry:8081'
