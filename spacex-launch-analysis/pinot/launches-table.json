@@ -1,0 +1,19 @@
+{
+    "tableName": "launches",
+    "segmentsConfig" : {
+      "timeColumnName": "launch_date",
+      "timeType": "DAYS",
+      "replication" : "1",
+      "schemaName" : "launches"
+    },
+    "tableIndexConfig" : {
+      "invertedIndexColumns" : [],
+      "loadMode"  : "MMAP"
+    },
+    "tenants" : {
+      "broker":"DefaultTenant",
+      "server":"DefaultTenant"
+    },
+    "tableType":"OFFLINE",
+    "metadata": {}
+  }

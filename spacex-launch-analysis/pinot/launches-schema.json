@@ -1,0 +1,53 @@
+{
+    "schemaName": "launches",
+    "dimensionFieldSpecs": [
+      {
+        "name": "booster_version",
+        "dataType": "STRING"
+      },
+      {
+        "name": "launch_site",
+        "dataType": "STRING"
+      },
+      {
+        "name": "payload",
+        "dataType": "STRING"
+      },
+      {
+        "name": "payload_mass_kg",
+        "dataType": "FLOAT"
+      },
+      {
+        "name": "orbit",
+        "dataType": "STRING"
+      },
+      {
+        "name": "customer",
+        "dataType": "STRING"
+      },
+      {
+        "name": "mission_outcome",
+        "dataType": "STRING"
+      },
+      {
+        "name": "landing_outcome",
+        "dataType": "STRING"
+      }
+    ],
+    "metricFieldSpecs": [
+    ],
+    "dateTimeFieldSpecs": [
+        {
+          "name": "launch_date",
+          "dataType": "STRING",
+          "format" : "1:DAYS:SIMPLE_DATE_FORMAT:dd-MM-yyyy",
+          "granularity": "1:DAYS"
+        },
+        {
+          "name": "launch_time",
+          "dataType": "STRING",
+          "format" : "1:MINUTES:SIMPLE_DATE_FORMAT:HH:mm:ss",
+          "granularity": "1:MINUTES"
+        }
+    ]
+  }
