@@ -1,0 +1,45 @@
+{
+    "tableName": "orders",
+    "tableType": "REALTIME",
+    "segmentsConfig": {
+      "timeColumnName": "order_date",
+      "schemaName": "orders",
+      "replication": "1",
+      "replicasPerPartition": "1"
+    },
+    "ingestionConfig": {
+      "batchIngestionConfig": {
+        "segmentIngestionType": "APPEND",
+        "segmentIngestionFrequency": "DAILY"
+      },
+      "transformConfigs": [
+        {"columnName": "id", "transformFunction": "JSONPATHLONG(_airbyte_data, '$.id')" },
+        {"columnName": "store_id", "transformFunction": "JSONPATHLONG(_airbyte_data, '$.store_id')" },
+        {"columnName": "channel", "transformFunction": "JSONPATHSTRING(_airbyte_data, '$.channel')" },
+        {"columnName": "country", "transformFunction": "JSONPATHSTRING(_airbyte_data, '$.country')" },
+        {"columnName": "total", "transformFunction": "JSONPATHDOUBLE(_airbyte_data, '$.total')" },
+        {"columnName": "status", "transformFunction": "JSONPATHSTRING(_airbyte_data, '$.status')" },
+        {"columnName": "order_date", "transformFunction": "JSONPATHSTRING(_airbyte_data, '$.order_date')" }
+      ]
+    },
+    "tableIndexConfig": {
+        "loadMode": "MMAP",
+        "streamConfigs": {
+          "streamType": "kafka",
+          "stream.kafka.topic.name": "orders",
+          "stream.kafka.broker.list": "kafka:9093",
+          "stream.kafka.consumer.type": "lowlevel",
+          "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
+          "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory",
+          "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.stream.kafka.KafkaJSONMessageDecoder"
+        }
+    },
+    "tenants": {},
+    "metadata": {},
+    "routing": {
+      "instanceSelectorType": "strictReplicaGroup"
+    },
+    "upsertConfig": {
+      "mode": "FULL"
+    }
+  }

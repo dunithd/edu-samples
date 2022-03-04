@@ -1,0 +1,40 @@
+{
+    "schemaName": "orders",
+    "primaryKeyColumns": [
+      "id"
+    ],
+    "dimensionFieldSpecs": [
+      {
+        "name": "id",
+        "dataType": "INT"
+      },
+      {
+        "name": "store_id",
+        "dataType": "INT"
+      },
+      {
+        "name": "channel",
+        "dataType": "STRING"
+      },
+      {
+        "name": "country",
+        "dataType": "STRING"
+      },
+      {
+        "name": "status",
+        "dataType": "STRING"
+      }
+    ],
+    "metricFieldSpecs": [
+      {
+        "name": "total",
+        "dataType": "FLOAT"
+      }
+    ],
+    "dateTimeFieldSpecs": [{
+      "name": "order_date",
+      "dataType": "STRING",
+      "format" : "1:DAYS:SIMPLE_DATE_FORMAT:yyyy-MM-dd",
+      "granularity": "1:DAYS"
+    }]
+  }
