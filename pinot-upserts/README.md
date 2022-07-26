@@ -1,4 +1,6 @@
-# Cheat sheet #
+# CDC-based Upserts with Debezium, Apache Kafka, and Apache Pinot #
+
+This is the code referred in the article [CDC-based Upserts with Debezium, Apache Kafka, and Apache Pinot](https://medium.com/event-driven-utopia/cdc-based-upserts-with-debezium-apache-kafka-and-apache-pinot-427cced24eb1)
 
 The project mimics an online e-commerce store with MySQL as the transactional database. E-commerce orders are captured in the orders MySQL table.
 
