@@ -1,0 +1,42 @@
+{
+    "schemaName": "orders",
+    "primaryKeyColumns": [
+        "payload.id"
+    ],
+    "dimensionFieldSpecs": [
+        {
+            "name": "payload.id",
+            "dataType": "INT"
+        },
+        {
+            "name": "payload.user_id",
+            "dataType": "INT"
+        },
+        {
+            "name": "payload.product_id",
+            "dataType": "INT"
+        },
+        {
+            "name": "payload.status",
+            "dataType": "STRING"
+        }
+    ],
+    "metricFieldSpecs": [
+        {
+            "name": "payload.quantity",
+            "dataType": "INT"
+        },
+        {
+            "name": "payload.total",
+            "dataType": "FLOAT"
+        }
+    ],
+    "dateTimeFieldSpecs": [
+        {
+            "name": "payload.updated_at",
+            "dataType": "LONG",
+            "format": "1:MILLISECONDS:EPOCH",
+            "granularity": "1:MILLISECONDS"
+        }
+    ]
+}
