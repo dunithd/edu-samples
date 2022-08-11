@@ -1,0 +1,36 @@
+{
+    "schemaName": "orders",
+    "primaryKeyColumns": [
+        "order_id"
+    ],
+    "dimensionFieldSpecs": [
+        {
+            "name": "order_id",
+            "dataType": "LONG"
+        },
+        {
+            "name": "items",
+            "dataType": "STRING",
+            "singleValueField": false
+        },
+        {
+            "name": "status",
+            "dataType": "STRING",
+            "singleValueField": false
+        }
+    ],
+    "metricFieldSpecs": [
+        {
+            "name": "total",
+            "dataType": "DOUBLE"
+        }
+    ],
+    "dateTimeFieldSpecs": [
+        {
+            "name": "created_at",
+            "dataType": "LONG",
+            "format": "1:MILLISECONDS:EPOCH",
+            "granularity": "1:MILLISECONDS"
+        }
+    ]
+}

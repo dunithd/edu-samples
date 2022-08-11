@@ -1,0 +1,65 @@
+{
+    "tableName": "orders",
+    "tableType": "REALTIME",
+    "segmentsConfig": {
+      "timeColumnName": "created_at",
+      "timeType": "MILLISECONDS",
+      "retentionTimeUnit": "DAYS",
+      "retentionTimeValue": "1",
+      "segmentPushType": "APPEND",
+      "segmentAssignmentStrategy": "BalanceNumSegmentAssignmentStrategy",
+      "schemaName": "orders",
+      "replicasPerPartition": "1"
+    },
+    "tenants": {},
+    "tableIndexConfig": {
+      "loadMode": "MMAP",
+      "streamConfigs": {
+        "streamType": "kafka",
+        "stream.kafka.consumer.type": "lowLevel",
+        "stream.kafka.topic.name": "orders_enriched-u8-1660198862-1311409326155391595",
+        "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.stream.kafka.KafkaJSONMessageDecoder",
+        "stream.kafka.hlc.zk.connect.string": "zookeeper:2181/kafka",
+        "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory",
+        "stream.kafka.consumer.prop.auto.offset.reset": "smallest",
+        "stream.kafka.zk.broker.url": "zookeeper:2181/kafka",
+        "stream.kafka.broker.list": "kafka:9092",
+        "realtime.segment.flush.threshold.size": 30,
+        "realtime.segment.flush.threshold.rows": 30
+      },
+      "nullHandlingEnabled": true
+    },
+    "ingestionConfig" : {
+      "transformConfigs":[
+        {
+          "columnName":"items",
+          "transformFunction":"jsonPathArray(after, '$.row.items')"
+        },
+        {
+          "columnName":"status",
+          "transformFunction":"jsonPathArray(after, '$.row.status')"
+        },
+        {
+          "columnName":"order_id",
+          "transformFunction":"JSONPATHLONG(after, '$.row.order_id')"
+        },
+        {
+          "columnName":"total",
+          "transformFunction":"JSONPATHDOUBLE(after, '$.row.total')"
+        },
+        {
+          "columnName":"created_at",
+          "transformFunction":"JSONPATHLONG(after, '$.row.created_at')"
+        }
+      ]
+    },
+    "metadata": {
+      "customConfigs": {}
+    },
+    "upsertConfig": {
+      "mode": "FULL"
+    },
+    "routing": {
+      "instanceSelectorType": "strictReplicaGroup"
+    }
+  }
